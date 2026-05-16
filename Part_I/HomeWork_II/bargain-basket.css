@@ -1,0 +1,350 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: cadetblue;
+    font-size: 16px;
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+}
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: cadetblue;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 33px;
+}
+
+main {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+}
+
+@media (max-width: 500px) {
+    main {
+        flex-direction: column;
+    }
+
+    section, aside {
+        width: 100%;
+    }
+}
+
+section {
+    flex: 2;
+    background-color: white;
+    padding: 22px;
+    border-radius: 11px;
+}
+
+aside {
+    flex: 1;
+    background-color: white;
+    padding: 22px;
+    border-radius: 11px;
+}
+
+form {
+    display: flex;
+    gap: 11px;
+    margin-bottom: 10px;
+}
+
+form input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 15px 5px;
+    border-bottom: 1px solid #e0e0e0; 
+}
+
+.item-name {
+    flex: 1;
+    font-size: 1.1rem;
+    color: black;
+}
+
+.center-controls {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.right-controls {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.purchased-item .item-name {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.focused-title {
+    border: 2px solid darkcyan;
+    border-radius: 6px;
+    padding: 4px 12px;
+    display: inline-block;
+}
+
+.faded-controls button {
+    opacity: 0.4;
+}
+
+.quantity-box {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+    color: #333;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px; 
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none; 
+}
+
+form button, .plus, .minus, .state, .remove, .disabled-state {
+    border: 0;
+    font-family: inherit;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    background-image: linear-gradient(to top left, rgb(0 0 0 / 0.15), rgb(0 0 0 / 0.15) 30%, transparent);
+    box-shadow: inset 1.5px 1.5px 2px rgb(255 255 255 / 0.5), inset -1.5px -1.5px 2px rgb(0 0 0 / 0.3);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.plus, .minus {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%; 
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.plus { background-color: #24c459; }
+
+.minus { background-color: #c9403e; }
+
+.btn-put {
+    background-color: #20b2aa; 
+    padding: 0 24px;
+    height: 44px;
+    border-radius: 11px;
+}
+
+.state {
+    background-color: #d6d6d6;
+    color: #444;
+    text-shadow: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+}
+
+.disabled-state {
+    background-color: #e8e8e8;
+    color: #888;
+    text-shadow: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+}
+
+.remove {
+    background-color: #d52d2a;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+button:hover {
+    filter: brightness(0.95);
+}
+
+button:active {
+    box-shadow: inset -1.5px -1.5px 2px rgb(255 255 255 / 0.5), inset 1.5px 1.5px 2px rgb(0 0 0 / 0.3);
+    transform: scale(0.97);
+}
+
+.stats-group {
+    margin-bottom: 25px;
+}
+
+.stats-group h2 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.stat-tag {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.purchased-tag {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.stat-tag mark {
+    background-color: #ff9800;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.badge {
+    position: fixed;
+    bottom: 0;
+    left: 40px;
+    background-color: rgb(50, 3, 95);
+    color: white;
+    width: 140px;
+    height: 45px;
+    padding: 12px 15px;
+    border-radius: 12px 12px 0 0;
+    transition: height 0.3s ease, background-color 0.3s ease;
+    overflow: hidden; 
+    z-index: 9999;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+
+.badge-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+.badge-info {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.4;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 10px;
+}
+
+.badge:hover {
+    height: 140px; 
+    background-color: #6a1b9a;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    background: #4a148c;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+@media print {
+
+    body * { 
+        visibility: hidden; 
+    }
+    
+    .badge, .badge * { 
+        visibility: visible; 
+    }
+    
+    .badge {
+        position: absolute; 
+        top: 20px; 
+        left: 20px;
+        bottom: auto;
+        height: auto;
+        width: 250px;
+        background: white; 
+        color: black;
+        border: 2px solid #4a148c;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: none;
+        transform: none;
+    }
+
+    .badge-info, .badge-info p {
+        color: black;
+        border-top-color: #4a148c;
+    }
+
+    .badge .main-title { 
+        display: none; 
+    }
+
+    .badge .print-title { 
+        display: block; 
+        color: #4a148c;
+        margin-bottom: 10px;
+    }
+}
