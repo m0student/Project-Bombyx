@@ -5,7 +5,7 @@
 }
 
 html {
-    background-color: cadetblue;
+    background-color: black;
     font-size: 16px;
     font-family: "Raleway", Arial, Helvetica, sans-serif;
 }
@@ -13,7 +13,7 @@ html {
 body {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: cadetblue;
+    background-color: black;
     padding: 20px;
     min-height: 100vh;
 }
@@ -26,11 +26,11 @@ h1 {
 
 main {
     display: flex;
-    gap: 22px;
+    gap: 23px;
     align-items: flex-start;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     main {
         flex-direction: column;
     }
@@ -74,20 +74,20 @@ ul {
 }
 
 li {
-    display: flex;
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
     align-items: center;
     padding: 15px 5px;
     border-bottom: 1px solid #e0e0e0; 
 }
 
 .item-name {
-    flex: 1;
     font-size: 1.1rem;
     color: black;
+    text-align: left;
 }
 
 .center-controls {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +95,6 @@ li {
 }
 
 .right-controls {
-    flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -105,6 +104,7 @@ li {
 .purchased-item .item-name {
     text-decoration: line-through;
     color: grey;
+    opacity: 0.6;
 }
 
 .focused-title {
@@ -115,7 +115,15 @@ li {
 }
 
 .faded-controls button {
-    opacity: 0.4;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.faded-controls .plus {
+    background-color: #24c45966;
+}
+
+.faded-controls .minus {
+    background-color: #c9403e66;
 }
 
 .quantity-box {
@@ -133,6 +141,7 @@ li {
 }
 
 form button, .plus, .minus, .state, .remove, .disabled-state {
+    position: relative;
     border: 0;
     font-family: inherit;
     font-weight: bold;
@@ -232,6 +241,7 @@ button:active {
 .purchased-tag {
     text-decoration: line-through;
     opacity: 0.6;
+    color: grey;
 }
 
 .stat-tag mark {
@@ -259,7 +269,7 @@ button:active {
     border-radius: 12px 12px 0 0;
     transition: height 0.3s ease, background-color 0.3s ease;
     overflow: hidden; 
-    z-index: 9999;
+    z-index: 9;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
 }
 
@@ -289,7 +299,7 @@ button:active {
     position: absolute;
     bottom: 120%;
     left: 50%;
-    transform: translateX(-50%) scale(0.8);
+    transform: translateX(-50%) translateY(10px) scale(0.8);
     background: #4a148c;
     color: white;
     padding: 6px 12px;
@@ -298,7 +308,7 @@ button:active {
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.2s ease;
+    transition: opacity 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95), transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
@@ -312,36 +322,40 @@ button:active {
     body * { 
         visibility: hidden; 
     }
+
+    html, body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+    }
     
     .badge, .badge * { 
         visibility: visible; 
     }
     
     .badge {
-        position: absolute; 
-        top: 20px; 
-        left: 20px;
-        bottom: auto;
+        top: 23px;
+        left: 23px;
         height: auto;
-        width: 250px;
+        max-height: 155px;
+        width: 300px;
         background: white; 
         color: black;
         border: 2px solid #4a148c;
-        padding: 20px;
+        padding: 23px;
         border-radius: 8px;
         box-shadow: none;
-        transform: none;
     }
 
     .badge-info, .badge-info p {
         color: black;
-        border-top-color: #4a148c;
     }
 
-    .badge .main-title { 
-        display: none; 
+    .badge .badge-title:not(.print-title) {
+        display: none;
     }
-
+    
     .badge .print-title { 
         display: block; 
         color: #4a148c;

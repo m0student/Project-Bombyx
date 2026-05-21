@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Bargain Basket</title>
-    <link rel="stylesheet" href="bargain-basket.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 </head>
 
 <body>
@@ -22,7 +25,7 @@
     <main>
         <section>
             <form>
-                <input type="text" placeholder="Product name" required>
+                <input type="text" placeholder="Product name..." required>
                 <button type="submit" class="btn-put" data-tooltip="Add to list">Put</button>
             </form>
 
@@ -35,7 +38,7 @@
                     </div>
 
                     <div class="right-controls">
-                        <button class="disabled-state">Not bought</button>
+                        <button class="disabled-state" data-tooltip="Not yet purchased">Not bought</button>
                     </div>
                 </li>
 
@@ -90,7 +93,7 @@
             </div>
         </aside>
 
-        <div class="badge" data-tooltip="About the Author">
+        <div class="badge">
             <span class="badge-title">Buy List</span>
 
             <span class="badge-title print-title" style="display: none;">Skvortsova</span>
