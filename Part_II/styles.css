@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+}
+
+.linear-columns {
+    display: flex;
+}
+
+.linear-columns ul {
+    flex: 1;
+}
+
+input[type="email"] {
+    border: 2px solid blue;
+}
+
+input:focus-visible {
+    outline: 3px solid blue;
+    box-shadow: 0 0 23px rgba(0, 150, 255, 0.9);
+}
+
+ul li:first-child {
+    font-weight: bold;
+}
+
+tr:nth-child(2n) td {
+    background-color: #f5f5f5;
+    color: black;
+}
+
+p:not(.intro) {
+    color: #666;
+}
+
+blockquote::before {
+    content: "\ab";
+    /* "«" */
+    font-size: 1.3em;
+}
+
+blockquote::after {
+    content: "\bb";
+    /* "»" */
+    font-size: 1.3em;
+}
