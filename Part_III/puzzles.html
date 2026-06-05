@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <title>Task 1 — Прогнози типізації</title>
+</head>
+
+<body>
+
+    <h1>Прогнози типізації</h1>
+    <p>Відкрийте Console (F12) i дивіться результат. Перш ніж запускати —
+        передбачте y коментарях, що виведе кожен <code>console.log</code>.</p>
+
+    <script>
+        // ============================================================
+        // ІНСТРУКЦІЯ
+        // ============================================================
+        // 1. НЕ запускаючи код, передбачте результат кожного виразу.
+        // 2. Запишіть прогноз у коментарі поряд (// Прогноз: ...).
+        // 3. Поясніть коротко, чому такий результат.
+        // 4. Запустіть код і звірте.
+        // 5. Де помилились — оновіть пояснення.
+        // ============================================================
+
+        console.log(0 == "");                  // Прогноз: true ("" перетвориться в 0)
+        console.log(0 === "");                 // Прогноз: false (строге порівняння типів)
+        console.log([] + []);                  // Прогноз: ("+" перетворює об'єкти в рядки) 
+        console.log([] + {});                  // Прогноз: [object Object] (те саме [].toString + {}.toString)
+        console.log("5" - 3);                  // Прогноз: 2 ("-" існує лише для чисел математично)
+        console.log("5" + 3);                  // Прогноз: 53 ("+" конкатенація якщо є рядок)
+        console.log(null == undefined);        // Прогноз: true (нестрого, особливе правило)
+        console.log(null === undefined);       // Прогноз: false (строго, різні типи)
+        console.log(true + 1);                 // Прогноз: 2 (boolean true це істина, тобто 1)
+        console.log(typeof null);              // Прогноз: object (нелогічний історичний баг, null не є об'єктом, примітивний)
+        console.log(typeof typeof 1);          // Прогноз: string (справа наліво: "number" -> string)
+        console.log(NaN === NaN);              // Прогноз: false (NaN не дорівнює нікому, навіть собі)
+    </script>
+
+</body>
+
+</html>
