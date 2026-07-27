@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <title>Task 2 — GitHub aggregator</title>
+    <style>
+        body {
+            background-color: #010409;
+            font-family: -apple-system, sans-serif;
+            max-width: 720px;
+            margin: 2rem auto;
+            padding: 1rem;
+            line-height: 1.5;
+        }
+
+        h1 {
+            color: #f0f6fc;
+        }
+
+        .form {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #username {
+            background-color: #212830;
+            color: #f0f6fc;
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #3d444d;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #username::placeholder {
+            color: #9198a1;
+            opacity: 1;
+        }
+
+        #username:focus {
+            border-color: #1f6feb;
+            box-shadow: 0 0 0 1px #1f6feb;
+        }
+
+        #load {
+            padding: 10px 20px;
+            background: #010409;
+            color: #f0f6fc;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #3d444d;
+        }
+
+        #load:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        #result {
+            color: #f0f6fc;
+            padding: 1rem;
+            background: #0d1117;
+            border-radius: 8px;
+            min-height: 80px;
+            border: 1px solid #3d444d;
+        }
+
+        .profile {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .profile h2 {
+            margin: 0;
+        }
+
+        .profile p {
+            margin: 4px 0 0;
+            color: #555;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .stat {
+            padding: 0.5rem;
+            background: #010409;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #3d444d;
+        }
+
+        .stat .label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .stat .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f0f6fc;
+        }
+
+        .top-repos {
+            margin-top: 1rem;
+        }
+
+        .top-repos h3 {
+            margin: 0 0 0.5rem;
+        }
+
+        .repo {
+            padding: 0.5rem;
+            background: #010409;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #3d444d;
+        }
+
+        .repo .name {
+            font-weight: 600;
+            color: #4493f8;
+        }
+
+        .repo .desc {
+            font-size: 0.9em;
+            color: #555;
+            margin: 4px 0;
+        }
+
+        .repo .stars {
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .error {
+            color: #c33;
+        }
+
+        .status {
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>GitHub aggregator</h1>
+
+    <div class="form">
+        <input id="username" type="text" placeholder="GitHub username (e.g. torvalds)" autofocus>
+        <button id="load">Download</button>
+    </div>
+
+    <div id="result">
+        <p class="status">Enter username and press the button...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
