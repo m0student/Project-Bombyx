@@ -1,0 +1,226 @@
+<!-- 
+I.  Підключити бібліотеку через CDN — <script> 
+    (а для деяких ще й <link rel="stylesheet">).
+II. Реалізувати основний вигляд так, як описано у вашому варіанті.
+    Наповнити даними — мінімум 5–8 елементів, 
+    реалістичні значення (українські назви/міста/імена, не foo/bar).
+III.Обробити подію користувача — клік, drag, hover тощо 
+    (точна подія — у варіанті). Результат має бути видимим: 
+    оновлення тексту на сторінці, лог у DevTools console, alert тощо.
+IV. Стилізувати контейнер — задати розмір, обрамлення, заголовок, відступи. 
+    Сторінка не має виглядати як «голий приклад з документації». 
+-->
+<!-- 
+I.  Бібліотека: Marked — конвертер Markdown → HTML.
+II. Що показати: два блоки поруч: ліворуч — <textarea> для введення Markdown, 
+    праворуч — <div> із готовим HTML. Підготувати початковий приклад тексту 
+    (5+ елементів: заголовок, список, посилання, цитата, код).
+III.Інтерактив: при кожному натисканні клавіші (input подія на textarea) 
+    — праворуч оновлюється HTML (marked.parse(textarea.value)). 
+    Внизу — лічильник символів/слів. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>Markdown editor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #f5f6f7;
+            color: #333;
+            margin: 0;
+            padding: 23px 16px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: calc(1.5rem + 1vw);
+        }
+
+        header {
+            text-align: center;
+            max-width: 1223px;
+            margin: 0 auto;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 23px;
+            width: 100%;
+            max-width: 1313px;
+            padding: 13px 43px;
+            margin: 0 auto;
+            background-image: url('/images/golden-ebony.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center 111px;
+            padding-bottom: 0;
+            border-radius: 9px;
+        }
+
+        .pane {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            padding: 0 11px;
+        }
+
+        .pane label {
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            background-color: #f5f6f7;
+            padding: 5px 0;
+            border-radius: 9px;
+            border: 1px solid #333;
+        }
+
+        #markdownInput,
+        #htmlOutput {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #333;
+            background-color: #fff;
+            border-radius: 9px;
+            min-height: 444px;
+            flex-grow: 1;
+            font-family: inherit;
+            overflow-y: auto;
+        }
+
+        textarea {
+            resize: vertical;
+            outline: none;
+        }
+
+        .status-bar {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 23px;
+            padding: 16px;
+            background-color: #fff;
+            border: 1px solid #333;
+            border-radius: 9px;
+            flex: 0 0 100%;
+            max-width: fit-content;
+            justify-self: center;
+            margin-bottom: -27px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-footer {
+            text-align: center;
+            margin-top: 77px;
+            padding: 16px;
+            font-size: 0.9rem;
+        }
+
+        .page-footer address {
+            line-height: 1.6;
+            color: #999;
+        }
+
+        .page-footer a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Task X — Marked · Markdown editor</h1>
+    </header>
+
+    <main class="container">
+        <section class="pane input-pane">
+            <label for="markdownInput" id="title-markdown">Markdown</label>
+            <textarea id="markdownInput" placeholder="Type in stuff here...">
+# Greetings, Evaluator
+
+## Today is Friday, which means we still have:
+* Saturday
+* Sunday
+
+> *"I wasted time, and now doth time waste me; yet moments of creation are the only ones we truly possess."*
+
+>*"To judge a man's work fairly, one must look at the substance of their labor, leaving all predispositions behind."*
+
+### So, make your choice and think about the grade [on the course page in DistEdu](https://distedu.ukma.edu.ua).
+
+```javascript
+    // A small function to check the mood of the submission
+    const evaluateProject = (isFunctional, looksGood) => {
+        return isFunctional && looksGood ? 
+            "Excellent job! A+" : "Let's review it again";
+    };
+    console.log(evaluateProject(true, true));
+```
+        </textarea>
+        </section>
+
+        <section class="pane output-pane">
+            <label for="htmlOutput" id="title-preview">Preview</label>
+            <div id="htmlOutput"></div>
+        </section>
+
+        <div class="status-bar">
+            <span>Symbols: <strong id="charCount">0</strong></span>
+            <span>Words: <strong id="wordCount">0</strong></span>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <address>
+            Craft project by a Silkworm Weaver<br>
+            XXI.VI.MMXXVI<br>
+            <hr>
+            Email: <a href="mailto:m.skvortsova@ukma.edu.ua">m.skvortsova@ukma.edu.ua</a><br>
+            Kyiv, Ukraine
+        </address>
+    </footer>
+
+    <script>
+        function render() {
+
+            const text = markdownInput.value;
+
+            htmlOutput.innerHTML = marked.parse(text);
+            charCount.textContent = text.length;
+            wordCount.textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+        }
+
+        markdownInput.addEventListener('input', render);
+        document.addEventListener('DOMContentLoaded', render);
+
+        render();
+    </script>
+</body>
